@@ -24,7 +24,7 @@ def NIC(max_token_length, vocabulary_size, rnn='lstm' ,num_image_features=2048,
                                                         name='image')
     image_input2 = Reshape((max_token_length, 196, 512), name='reshape1')(image_input)
   #  denselastlayer
-    image_embedding = TimeDistributed(Dense(units=embedding_size,
+    image_embedding = TimeDistributed(DenseLast(units=embedding_size,
                                       kernel_regularizer=l2(regularizer),
                                       name='image_embedding'))(image_input2)
     image_dropout = Dropout(.5, name='image_dropout')(image_embedding)
